@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import profile from "../img/user-blue-gradient.png";
+import activities from "../img/community.png";
+import findpeers from "../img/chat.png";
 
 export default function Home() {
   const [message] = useState("");
@@ -12,9 +15,21 @@ export default function Home() {
       <h1>Welcome</h1>
       <p style={{color: '#666'}}>{message}</p>
       <div style={{display: 'flex', gap: 12, marginTop: 24}}>
-        <button onClick={() => go('/profile')} style={{padding: '10px 16px'}}>Profile</button>
-        <button onClick={() => go('/activities')} style={{padding: '10px 16px'}}>Activities</button>
-        <button onClick={() => go('/find-peers')} style={{padding: '10px 16px'}}>Find Peers</button>
+        <button onClick={() => go('/profile')} style={{padding: '10px 16px'}}> 
+            <img src={profile} alt="Profile" style={{width: 20, height: 20, marginRight: 8}} />
+            Profile
+            </button>
+
+        <button onClick={() => go('/activities')} style={{padding: '10px 16px'}}>
+            <img src={activities} alt="Activities" style={{width: 20, height: 20, marginRight: 8}} />
+            Activities
+            </button>
+
+        <button onClick={() => go('/find-peers')} style={{padding: '10px 16px'}}>
+            <img src={findpeers} alt="Find Peers" style={{width: 20, height: 20, marginRight: 8}} />
+            Find Peers
+            </button>
+
       </div>
     </div>
   )

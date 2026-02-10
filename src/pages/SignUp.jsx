@@ -95,7 +95,7 @@ export const SignUp = () => {
 
       <p style={{ marginTop: "10px" }}>
         Already have an account?{" "}
-        <a href="/login">Login</a>
+        <a href="/auth/login">Login</a>
       </p>
     </div>
   );

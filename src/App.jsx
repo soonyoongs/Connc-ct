@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Activities from './pages/Activities.jsx';
 import FindPeers from './pages/FindPeers.jsx';
+import IndicateInterest from './pages/IndicateInterest.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/auth/Login" element={<Login />} />
         <Route path="/auth/SignUp" element={<SignUp />} />
         <Route path="/main" element={<Home />} />
+        <Route path="/pref" element={<IndicateInterest />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activities" element={<Activities />} />
         <Route path="/find-peers" element={<FindPeers />} />
