@@ -1,21 +1,18 @@
 import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  
- 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/main", { replace: true });
     }
   }, [navigate]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,64 +28,69 @@ export const Login = () => {
 
       if (data.access_granted) {
         setMessage("✅ Login successful!");
-        localStorage.setItem("token", data.token); // save token
-        
-        // Redirect to Home page after 1 second
+        localStorage.setItem("token", data.token);
+
         setTimeout(() => navigate("/main", {replace: true}), 1000);
       } else {
         setMessage("❌ Invalid email or password");
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        console.error("Server response data:", error.ressponse.data);
+        console.error("Server response data:", error.response.data);
       }
       setMessage("⚠️ Server error. Please try again.");
-    };
+    }
   };
 
   return (
-    <div className="login-page">
-      <header>Login</header>
+      <div className="login-page">
+        {/* Google Translate Widget - Language Selector */}
+        <div id="google_translate_element" style={{ position: 'absolute', top: 10, right: 10 }}></div>
 
-      <form id="loginForm" className="login-form" onSubmit={handleSubmit}>
-        <label>Email address</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email (e.g.: abc@gmail.com)"
-          required
-        />
-        <br />
+        <header>Login</header>
 
-        <label>Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-          required
-        />
-        <br />
-        <br />
-      <p style={{ textAlign: "center" }}>
-        New user?{"  "}
-        <span
-          style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
-          onClick={() => navigate("/auth/SignUp")}
-        >
-          Create account
-        </span>
-      </p>
+        <form id="loginForm" className="login-form" onSubmit={handleSubmit}>
+          <label>Email address</label>
+          <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email (e.g.: abc@gmail.com)"
+              required
+              className="notranslate"
+          />
+          <br />
 
-        <button type="submit" id="loginBtn">
-          Login
-        </button>
-      </form>
+          <label>Password</label>
+          <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+              className="notranslate"
+          />
+          <br />
+          <br />
 
-      {message && <p style={{ marginTop: "10px" , justifyContent : "center"}}>{message}</p>}
-    </div>
+          <p style={{ textAlign: "center" }}>
+            New user?{" "}
+            <span
+                style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+                onClick={() => navigate("/auth/SignUp")}
+            >
+            Create account
+          </span>
+          </p>
+
+          <button type="submit" id="loginBtn">
+            Login
+          </button>
+        </form>
+
+        {message && <p style={{ marginTop: "10px", textAlign: "center" }}>{message}</p>}
+      </div>
   );
 };
