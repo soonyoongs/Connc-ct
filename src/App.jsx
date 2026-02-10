@@ -1,11 +1,27 @@
 import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Login } from './pages/LogIn.jsx';
+import { SignUp } from './pages/SignUp.jsx';
+import Home from './pages/Home.jsx';
+import Profile from './pages/Profile.jsx';
+import Activities from './pages/Activities.jsx';
+import FindPeers from './pages/FindPeers.jsx';
 
 function App() {
   return (
-    <div>
-      <h1>Connc:ct</h1>
-    </div>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/auth/Login" replace />} />
+        <Route path="/auth/Login" element={<Login />} />
+        <Route path="/auth/SignUp" element={<SignUp />} />
+        <Route path="/main" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/find-peers" element={<FindPeers />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;

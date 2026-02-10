@@ -77,7 +77,7 @@ export const Login = () => {
         New user?{"  "}
         <span
           style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
-          onClick={() => navigate("/createacc")}
+          onClick={() => navigate("/auth/SignUp")}
         >
           Create account
         </span>
