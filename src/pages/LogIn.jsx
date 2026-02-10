@@ -1,44 +1,46 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
-export const Login = () => {
+const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/main", { replace: true });
-    }
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate("/main", { replace: true });
+      }
+    };
+    checkUser();
   }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const { data, error: supabaseError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
-      const data = await response.json();
+      if (supabaseError) {
+        setError(`${supabaseError.error}`);
+        return;
+      }
 
-      if (data.access_granted) {
-        setMessage("✅ Login successful!");
-        localStorage.setItem("token", data.token);
-
-        setTimeout(() => navigate("/main", {replace: true}), 1000);
-      } else {
-        setMessage("❌ Invalid email or password");
+      if (data.session) {
+        // Optional success message
+        console.log("✅ Login successful!");
+        setTimeout(() => navigate("/main", { replace: true }), 1000);
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        console.error("Server response data:", error.response.data);
-      }
-      setMessage("⚠️ Server error. Please try again.");
+      console.error("Unexpected error:", error);
+      setError("Server error. Please try again later.");
     }
   };
 
@@ -90,7 +92,9 @@ export const Login = () => {
           </button>
         </form>
 
-        {message && <p style={{ marginTop: "10px", textAlign: "center" }}>{message}</p>}
+        {error && <p style={{ marginTop: "10px", textAlign: "center" }}>{error}</p>}
       </div>
   );
 };
+
+export default LogIn;

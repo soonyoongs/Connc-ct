@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import profile from "../img/user-blue-gradient.png";
-import activities from "../img/community.png";
-import findpeers from "../img/chat.png";
+import profile from "../assets/images/user-blue-gradient.png";
+import activities from "../assets/images/community.png";
+import findpeers from "../assets/images/chat.png";
 
 export default function Home() {
   const [message] = useState("");
