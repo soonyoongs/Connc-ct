@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,7 +8,6 @@ export const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +17,6 @@ export const SignUp = () => {
       setMessage("Passwords do not match");
       return;
     }
-
 
     // Validate password length
     if (password.length < 8) {
@@ -49,54 +46,67 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="login-page">
-      <header>Sign Up</header>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name"
-          required
-        />
+      <div className="login-page">
+        {/* Google Translate Widget - Language Selector */}
+        <div id="google_translate_element" style={{ position: 'absolute', top: 10, right: 10 }}></div>
 
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          required
-        />
+        <header>Sign Up</header>
 
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password (min. 8 characters)"
-          required
-        />
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label>Name</label>
+          <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+              required
+              className="notranslate"
+          />
 
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm password"
-          required
-        />
+          <label>Email</label>
+          <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="notranslate"
+          />
 
-        <button type="submit">Sign Up!</button>
-      </form>
+          <label>Password</label>
+          <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password (min. 8 characters)"
+              required
+              className="notranslate"
+          />
 
-      {message && <p style={{ marginTop: "10px" }}>{message}</p>}
+          <label>Confirm Password</label>
+          <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm password"
+              required
+              className="notranslate"
+          />
 
-      <p style={{ marginTop: "10px" }}>
-        Already have an account?{" "}
-        <a href="/login">Login</a>
-      </p>
-    </div>
+          <button type="submit">Sign Up!</button>
+        </form>
+
+        {message && <p style={{ marginTop: "10px", textAlign: "center" }}>{message}</p>}
+
+        <p style={{ marginTop: "10px", textAlign: "center" }}>
+          Already have an account?{" "}
+          <span
+              style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+              onClick={() => navigate("/auth/Login")}
+          >
+          Login
+        </span>
+        </p>
+      </div>
   );
 };
