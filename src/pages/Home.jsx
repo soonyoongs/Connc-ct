@@ -133,10 +133,10 @@ export default function Home() {
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             {/* Navigation Bar */}
-            <nav className="home-nav" style={{ padding: '10px 40px', borderBottom: '1px solid #eee' }}>
-                <div className="nav-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-                    <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
-                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <nav className="home-nav" style={{ padding: '16px 40px', borderBottom: '1px solid #eee', width: '100%', boxSizing: 'border-box' }}>
+                <div className="nav-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                    <div style={{display:'flex', justifyContent: 'flex-start', alignItems: 'left', fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
+                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '20px' }}>
                         <div id="google_translate_element" style={{ minWidth: '120px' }}></div>
                         {user ? (
                             <>
