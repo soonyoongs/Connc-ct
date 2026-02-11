@@ -25,6 +25,32 @@ export default function Home() {
         return () => subscription?.unsubscribe();
     }, []);
 
+    useEffect(() => {
+        // Check if widget is already initialized to prevent duplication
+        if (document.querySelector(".goog-te-combo")) {
+            return;
+        }
+
+        // Initialize Google Translate widget
+        window.googleTranslateElementInit = () => {
+            if (!document.querySelector(".goog-te-combo")) {
+                new window.google.translate.TranslateElement(
+                    { pageLanguage: "en", includedLanguages: "en,es,fr,de,zh-CN,ja,ko" },
+                    "google_translate_element"
+                );
+            }
+        };
+
+        // Load Google Translate Script if not already loaded
+        if (!document.getElementById("google-translate-script")) {
+            const script = document.createElement("script");
+            script.id = "google-translate-script";
+            script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            script.async = true;
+            document.head.appendChild(script);
+        }
+    }, []);
+
     const handleLogout = async () => {
         await supabase.auth.signOut();
         setUser(null);
@@ -43,6 +69,7 @@ export default function Home() {
             }}>
                 <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div id="google_translate_element" style={{ minWidth: '120px' }}></div>
                     {user ? (
                         <>
                             <span style={{ fontSize: '14px', fontWeight: '500', color: '#333' }}>
