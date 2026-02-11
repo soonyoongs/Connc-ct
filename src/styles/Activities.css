@@ -1,0 +1,161 @@
+.activities-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.activities-container h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.activities-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.activity-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.activity-card:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.activity-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.activity-details {
+  display: flex;
+  gap: 8px;
+}
+
+.activity-type {
+  display: inline-block;
+  background-color: #e7f3ff;
+  color: #007bff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.activity-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-label {
+  width: 20px;
+  text-align: center;
+}
+
+.rsvp-button {
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+.rsvp-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.rsvp-button.rsvped {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.rsvp-button.rsvped:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+.btn-back-activities {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back-activities:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .activity-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .activity-meta {
+    width: 100%;
+  }
+
+  .rsvp-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  .activities-container {
+    padding: 16px;
+  }
+}
