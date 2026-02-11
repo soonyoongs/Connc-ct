@@ -1,3 +1,9 @@
+# Connc:ct 
+A data-driven web application aiming to reduce social isolation among elderlies by connecting them with younger generations through shared interests.
+Our goal is to foster community engagement, bridging the gap between generations with common hobbies. We hope these individuals are able to form meaningful connections and regain purpose in life
+by interacting with like-minded youngsters. 
+
+
 ## Quick Start
 
 ### Prerequisites
