@@ -45,8 +45,8 @@ The application should now be running on `http://localhost:5173` (or the port sh
    - Complete your profile setup
 
 2. **Set Your Interests**
-   - Indicate your interests and preferences
-   - Customize your profile to match your activity preferences
+   - Indicate your interests 
+   - Customize your profile to match your activity interest
 
 3. **Discover Activities**
    - Browse personalized activity recommendations based on your interests
