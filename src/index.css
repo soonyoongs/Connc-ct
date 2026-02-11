@@ -24,11 +24,14 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -195,4 +198,19 @@ login-form input {
 
 .signup-link:hover {
   color: #0056b3;
+}
+
+.home-nav {
+  background-color: #F4C430;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+  
+.nav-content {
+  max-width: 1200px; 
+  margin: 0 auto;   
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

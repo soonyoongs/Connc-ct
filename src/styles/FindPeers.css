@@ -6,8 +6,19 @@
 
 .find-peers-container h2 {
   margin-bottom: 8px;
-  font-size: 28px;
+  margin-top: -3px;
+  padding: 20px 0; /* Vertical padding */
+  font-size: 45px;
   text-align: center;
+  background-color: #F4C430;
+
+  /* The magic lines */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .find-peers-subtitle {
@@ -15,6 +26,14 @@
   color: #666;
   margin-bottom: 32px;
   font-size: 16px;
+}
+
+.recommended-header {
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #ddd;
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .peers-grid {
@@ -62,6 +81,10 @@
   flex-shrink: 0;
 }
 
+.peer-card.recommended .peer-avatar {
+  background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+}
+
 .peer-basic-info {
   flex: 1;
 }
@@ -78,6 +101,13 @@
   font-size: 14px;
   color: #666;
 }
+
+.peer-gender {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
 
 .peer-interests {
   flex: 1;
@@ -113,9 +143,9 @@
   padding: 12px 20px;
   font-size: 14px;
   font-weight: 600;
-  border: 2px solid #007bff;
-  background-color: #007bff;
-  color: white;
+  border: 2px solid #5dd3b0c1;
+  background-color: #74ffd5c1;
+  color: rgb(0, 0, 0);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -123,9 +153,9 @@
 }
 
 .connect-button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  background-color: #ffdb6f;
+  border-color: #ffdb6f;
+  box-shadow: 0 4px 12px rgba(227, 181, 40, 0.3);
 }
 
 .connect-button.connected {
@@ -197,6 +227,21 @@
 
 .btn-back-findpeers:hover {
   background-color: #e0e0e0;
+}
+
+.interest-tag.matching-interest {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+  font-weight: 600;
+}
+
+.interest-tag.highlighted-interest {
+  background-color: #cfe2ff;
+  color: #084298;
+  border-color: #b6d4fe;
+  font-weight: 600;
+  margin: 0 4px;
 }
 
 /* Responsive design */

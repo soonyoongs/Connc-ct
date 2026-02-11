@@ -4,10 +4,21 @@
   margin: 0 auto;
 }
 
-.activities-container h2 {
+.activities-container h1 {
   margin-bottom: 8px;
-  font-size: 28px;
+  margin-top: -3px;
+  padding: 20px 0; /* Vertical padding */
+  font-size: 45px;
   text-align: center;
+  background-color: #F4C430;
+
+  /* The magic lines */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .activities-subtitle {
@@ -15,6 +26,14 @@
   color: #666;
   margin-bottom: 32px;
   font-size: 16px;
+}
+
+.recommended-header {
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #ddd;
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .activities-list {
@@ -40,6 +59,16 @@
   border-color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
   transform: translateY(-2px);
+}
+
+.activity-card.recommended {
+  background-color: #fffbea;
+  border-color: #ffc107;
+}
+
+.activity-card.recommended:hover {
+  border-color: #ff9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
 }
 
 .activity-content {
@@ -136,6 +165,25 @@
 
 .btn-back-activities:hover {
   background-color: #e0e0e0;
+}
+
+.interest-tag {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+}
+
+.interest-tag.highlighted-interest {
+  background-color: #cfe2ff;
+  color: #084298;
+  border-color: #b6d4fe;
+  font-weight: 600;
+  margin: 0 4px;
 }
 
 /* Responsive design */

@@ -9,6 +9,58 @@ import findpeers from "../assets/images/chat.png";
 export default function Home() {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [rsvpedActivities, setRsvpedActivities] = useState([]);
+
+    const activitiesData = [
+        {
+            id: 1,
+            title: "Basketball Game",
+            type: "Sports",
+            date: "2025-02-15",
+            time: "19:00",
+            location: "Downtown Court",
+        },
+        {
+            id: 2,
+            title: "Music Jam Session",
+            type: "Music",
+            date: "2025-02-16",
+            time: "18:30",
+            location: "Community Center",
+        },
+        {
+            id: 3,
+            title: "Art Workshop",
+            type: "Art",
+            date: "2025-02-17",
+            time: "14:00",
+            location: "Creative Studio",
+        },
+        {
+            id: 4,
+            title: "Hiking Trip",
+            type: "Travel",
+            date: "2025-02-18",
+            time: "08:00",
+            location: "Mountain Trail",
+        },
+        {
+            id: 5,
+            title: "Cooking Class",
+            type: "Cooking",
+            date: "2025-02-19",
+            time: "17:00",
+            location: "Kitchen Studios",
+        },
+        {
+            id: 6,
+            title: "Photography Walk",
+            type: "Photography",
+            date: "2025-02-20",
+            time: "10:00",
+            location: "City Downtown",
+        },
+    ];
 
     useEffect(() => {
         const getUser = async () => {
@@ -22,7 +74,26 @@ export default function Home() {
             setUser(session?.user);
         });
 
-        return () => subscription?.unsubscribe();
+        // Load RSVPed activities from localStorage
+        const savedRsvps = localStorage.getItem("rsvpedActivities");
+        if (savedRsvps) {
+            setRsvpedActivities(JSON.parse(savedRsvps));
+        }
+
+        // Listen for storage changes (when RSVP is updated in Activities page)
+        const handleStorageChange = () => {
+            const savedRsvps = localStorage.getItem("rsvpedActivities");
+            if (savedRsvps) {
+                setRsvpedActivities(JSON.parse(savedRsvps));
+            }
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+
+        return () => {
+            subscription?.unsubscribe();
+            window.removeEventListener("storage", handleStorageChange);
+        };
     }, []);
 
     useEffect(() => {
@@ -56,18 +127,41 @@ export default function Home() {
         setUser(null);
     };
 
+    const handleRemoveRsvp = (activityId) => {
+        const updated = rsvpedActivities.filter((id) => id !== activityId);
+        setRsvpedActivities(updated);
+        localStorage.setItem("rsvpedActivities", JSON.stringify(updated));
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+        });
+    };
+
+    const formatTime = (timeString) => {
+        const [hours, minutes] = timeString.split(":");
+        const hour = parseInt(hours);
+        const ampm = hour >= 12 ? "PM" : "AM";
+        const displayHour = hour % 12 || 12;
+        return `${displayHour}:${minutes} ${ampm}`;
+    };
+
+    const getRsvpedActivitiesData = () => {
+        return activitiesData.filter((activity) =>
+            rsvpedActivities.includes(activity.id)
+        );
+    };
+
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             {/* Navigation Bar */}
-            <nav style={{
-                backgroundColor: '#F4C430',
-                padding: '16px 40px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}>
-                <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
+            <nav className="home-nav">
+                <div className="nav-content">
+                    <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <div id="google_translate_element" style={{ minWidth: '120px' }}></div>
                     {user ? (
@@ -84,6 +178,8 @@ export default function Home() {
                         </>
                     )}
                 </div>
+                </div>
+                
             </nav>
 
             {/* Feature Cards Section */}
@@ -156,6 +252,83 @@ export default function Home() {
                     </div>
                 </div>
 
+                {/* Booked Activities Section */}
+<div style={{ padding: '40px 40px', backgroundColor: '#fff' }}>
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        
+        {/* Permanent Header */}
+        <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#333', marginBottom: '20px' }}>
+            Your Upcoming Activities
+        </h3>
+
+        {/* Dynamic Content: Shows either the table or the 'No activities' message */}
+        {getRsvpedActivitiesData().length === 0 ? (
+            <div style={{
+                backgroundColor: '#f9f9f9',
+                border: '1px solid #ddd',
+                borderRadius: '8px',
+                padding: '40px 20px',
+                textAlign: 'center',
+                color: '#999',
+                fontSize: '16px',
+                fontWeight: '500'
+            }}>
+                No activities booked
+            </div>
+        ) : (
+            <table style={{
+                width: '100%',
+                borderCollapse: 'collapse',
+                backgroundColor: '#f9f9f9',
+                border: '1px solid #6d6d6d',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
+            }}>
+                <thead>
+                    <tr style={{ backgroundColor: '#6acdff4f', borderBottom: '2px solid #ddd' }}>
+                        <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Activity</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Type</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Date</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Time</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'left', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Location</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'center', fontWeight: '600', color: '#121212', fontSize: '14px' }}>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {getRsvpedActivitiesData().map((activity) => (
+                        <tr 
+                            key={activity.id} 
+                            style={{ borderBottom: '1px solid #ddd', transition: 'background-color 0.2s' }} 
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f9f9f9'} 
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                        >
+                            <td style={{ padding: '12px 16px', color: '#333', fontSize: '14px' }}>{activity.title}</td>
+                            <td style={{ padding: '12px 16px', color: '#333', fontSize: '14px' }}>
+                                <span style={{ backgroundColor: '#e7f3ff', color: '#007bff', padding: '4px 12px', borderRadius: '12px', fontSize: '12px', fontWeight: '500' }}>
+                                    {activity.type}
+                                </span>
+                            </td>
+                            <td style={{ padding: '12px 16px', color: '#333', fontSize: '14px' }}>{formatDate(activity.date)}</td>
+                            <td style={{ padding: '12px 16px', color: '#333', fontSize: '14px' }}>{formatTime(activity.time)}</td>
+                            <td style={{ padding: '12px 16px', color: '#333', fontSize: '14px' }}>{activity.location}</td>
+                            <td style={{ padding: '12px 16px', textAlign: 'center' }}>
+                                <button 
+                                    onClick={() => handleRemoveRsvp(activity.id)} 
+                                    style={{ padding: '6px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: '500' }}
+                                >
+                                    Remove
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )}
+    </div>
+</div>
+
+               
             </div>
         </div>
     )

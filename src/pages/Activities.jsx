@@ -85,15 +85,23 @@ export default function Activities() {
       }
     };
 
+    // Load RSVPed activities from localStorage
+    const savedRsvps = localStorage.getItem("rsvpedActivities");
+    if (savedRsvps) {
+      setRsvpedActivities(JSON.parse(savedRsvps));
+    }
+
     fetchUserInterests();
   }, []);
 
   const toggleRsvp = (activityId) => {
-    setRsvpedActivities((prev) =>
-      prev.includes(activityId)
+    setRsvpedActivities((prev) => {
+      const updated = prev.includes(activityId)
         ? prev.filter((id) => id !== activityId)
-        : [...prev, activityId]
-    );
+        : [...prev, activityId];
+      localStorage.setItem("rsvpedActivities", JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const formatDate = (dateString) => {
@@ -132,14 +140,14 @@ export default function Activities() {
 
   return (
     <div className="activities-container">
-      <h2>Activities</h2>
-      <p className="activities-subtitle">Discover and RSVP to events</p>
+      <h1>Activities</h1>
+      <p className="activities-subtitle">Discover and join events!</p>
 
       {!loading && recommendedActivities.length > 0 && (
         <div className="recommendations-section">
-          <h3>Recommended for You</h3>
+          <h3 className='recommended-header'>👇Recommended for You👇</h3>
           <p className="recommendations-subtitle">
-            Based on your interests: {userInterests.join(", ")}
+            Based on your interests：
           </p>
           <div className="activities-list">
             {recommendedActivities.map((activity) => (
@@ -171,7 +179,7 @@ export default function Activities() {
                   }`}
                   onClick={() => toggleRsvp(activity.id)}
                 >
-                  {rsvpedActivities.includes(activity.id) ? "✓ RSVP'd" : "RSVP"}
+                  {rsvpedActivities.includes(activity.id) ? "✓ Booked" : "Book"}
                 </button>
               </div>
             ))}

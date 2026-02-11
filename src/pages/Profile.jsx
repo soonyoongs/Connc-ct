@@ -25,7 +25,7 @@ export default function Profile() {
 
 			const { data, error: profileError } = await supabase
 				.from("profiles")
-				.select("user_id, name, email, created_at")
+				.select("user_id, name, email, interests, created_at")
 				.eq("user_id", user.id)
 				.single();
 
@@ -105,7 +105,7 @@ export default function Profile() {
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
         <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
-        <button onClick={() => navigate(-2)} style={{
+        <button onClick={() => navigate("/")} style={{
           padding: '6px 16px',
           backgroundColor: '#fff',
           border: '1px solid #ddd',
@@ -340,7 +340,7 @@ export default function Profile() {
           {/* Main Content Section */}
           <div style={{
             padding: '40px',
-            maxWidth: '1000px',
+            width: '1000px',
             margin: '0 auto'
           }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
@@ -394,33 +394,87 @@ export default function Profile() {
                   My Interests
                 </h2>
 
-                <div style={{ backgroundColor: '#f9f9f9', padding: '24px', borderRadius: '8px', textAlign: 'center', border: '1px solid #ddd' }}>
-                  <p style={{ fontSize: '14px', color: '#666', margin: '0 0 24px 0' }}>Set your interests</p>
-                  <button
-                    onClick={() => navigate('/pref')}
-                    style={{
-                      width: '100%',
-                      padding: '12px 24px',
-                      backgroundColor: '#F4C430',
-                      color: '#333',
-                      border: 'none',
-                      borderRadius: '4px',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#e6b800';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#F4C430';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    Set Interests
-                  </button>
+                <div style={{ backgroundColor: '#f9f9f9', padding: '24px', borderRadius: '8px', border: '1px solid #ddd' }}>
+                  {profile?.interests && profile.interests.length > 0 ? (
+                    <>
+                      <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '8px',
+                        marginBottom: '24px'
+                      }}>
+                        {profile.interests.map((interest, index) => (
+                          <span
+                            key={index}
+                            style={{
+                              padding: '6px 12px',
+                              backgroundColor: '#F4C430',
+                              color: '#333',
+                              borderRadius: '20px',
+                              fontSize: '12px',
+                              fontWeight: '500'
+                            }}
+                          >
+                            {interest}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => navigate('/pref')}
+                        style={{
+                          width: '100%',
+                          padding: '10px 24px',
+                          backgroundColor: 'transparent',
+                          color: '#F4C430',
+                          border: '2px solid #F4C430',
+                          borderRadius: '4px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#F4C430';
+                          e.currentTarget.style.color = '#333';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = '#F4C430';
+                        }}
+                      >
+                        Edit Interests
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p style={{ fontSize: '14px', color: '#666', margin: '0 0 24px 0' }}>No interests set yet</p>
+                      <button
+                        onClick={() => navigate('/pref')}
+                        style={{
+                          width: '100%',
+                          padding: '12px 24px',
+                          backgroundColor: '#F4C430',
+                          color: '#333',
+                          border: 'none',
+                          borderRadius: '4px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#e6b800';
+                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#F4C430';
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
+                        Set Interests
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
