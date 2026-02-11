@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import profile from "../assets/images/user-blue-gradient.png";
 import activities from "../assets/images/community.png";
 import findpeers from "../assets/images/chat.png";
-import ChatbotWidget from "./ChatbotWidget";
+import ChatbotWidget from "../components/ChatbotWidget";
 
 export default function Home() {
     const [message] = useState("");
