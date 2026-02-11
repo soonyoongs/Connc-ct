@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Navigate to="/main" replace />} />
         <Route path="/auth/LogIn" element={<LogIn />} />
         <Route path="/auth/SignUp" element={<SignUp />} />
-        <Route path="/main" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/pref" element={<IndicateInterest />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activities" element={<Activities />} />

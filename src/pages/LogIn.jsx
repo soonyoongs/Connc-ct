@@ -12,7 +12,7 @@ const LogIn = () => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        navigate("/main", { replace: true });
+        navigate("/home", { replace: true });
       }
     };
     checkUser();
@@ -61,7 +61,7 @@ const LogIn = () => {
       setPassword("");
 
       console.log("✅ Login successful and user verified!");
-      navigate("/main", { replace: true });
+      navigate("/home", { replace: true });
     } catch (error) {
       console.error("Unexpected error:", error);
       setError("Server error. Please try again later.");
