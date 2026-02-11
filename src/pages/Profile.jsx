@@ -18,10 +18,6 @@ export default function Profile() {
 			const { data: { user }, error: userError } = await supabase.auth.getUser();
 			
 			if (userError) throw userError;
-			if (!user) {
-				navigate("/login"); // Redirect if not logged in
-				return;
-			}
 
 			const { data, error: profileError } = await supabase
 				.from("profiles")
@@ -53,7 +49,7 @@ export default function Profile() {
     return date.toLocaleString('default', { month: 'long', year: 'numeric' });
   };
 
-	// Get initials for avatar - uses 'name' field from your table
+	// Get initials
   const getInitials = (name) => {
     if (!name) return "U";
     return name
@@ -64,24 +60,9 @@ export default function Profile() {
       .slice(0, 2);
   };
 
-  // Loading Ring Component
   const LoadingRing = () => (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '300px',
-      width: '100%'
-    }}>
-      <div style={{
-        width: '60px',
-        height: '60px',
-        borderRadius: '50%',
-        border: '5px solid #f3f3f3',
-        borderTop: '5px solid #F4C430',
-        animation: 'spin 1s linear infinite',
-        margin: '0 auto'
-      }}></div>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px', width: '100%' }}>
+      <div style={{ width: '60px', height: '60px', borderRadius: '50%', border: '5px solid #f3f3f3', borderTop: '5px solid #F4C430', animation: 'spin 1s linear infinite', margin: '0 auto' }}></div>
     </div>
   );
 
@@ -119,7 +100,6 @@ export default function Profile() {
         </button>
       </nav>
 
-      {/* Show loading state */}
       {loading ? (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           {/* Profile Header Section - Loading */}
@@ -420,7 +400,7 @@ export default function Profile() {
                         ))}
                       </div>
                       <button
-                        onClick={() => navigate('/pref')}
+                        onClick={() => navigate('/interest')}
                         style={{
                           width: '100%',
                           padding: '10px 24px',
@@ -449,7 +429,7 @@ export default function Profile() {
                     <>
                       <p style={{ fontSize: '14px', color: '#666', margin: '0 0 24px 0' }}>No interests set yet</p>
                       <button
-                        onClick={() => navigate('/pref')}
+                        onClick={() => navigate('/interest')}
                         style={{
                           width: '100%',
                           padding: '12px 24px',

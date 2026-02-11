@@ -10,6 +10,17 @@ export default function Home() {
     const [user, setUser] = useState(null);
     const [rsvpedActivities, setRsvpedActivities] = useState([]);
 
+    // Reusable styles for feature cards
+    const cardStyle = {
+        backgroundColor: '#f9f9f9',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '32px 24px',
+        textAlign: 'center',
+        cursor: 'pointer',
+        transition: 'all 0.2s'
+    };
+
     const activitiesData = [
         { id: 1, title: "Basketball Game", type: "Sports", date: "2025-02-15", time: "19:00", location: "Downtown Court" },
         { id: 2, title: "Music Jam Session", type: "Music", date: "2025-02-16", time: "18:30", location: "Community Center" },
@@ -107,17 +118,6 @@ export default function Home() {
 
     const getRsvpedActivitiesData = () => {
         return activitiesData.filter((activity) => rsvpedActivities.includes(activity.id));
-    };
-
-    // Reusable styles for feature cards
-    const cardStyle = {
-        backgroundColor: '#f9f9f9',
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        padding: '32px 24px',
-        textAlign: 'center',
-        cursor: 'pointer',
-        transition: 'all 0.2s'
     };
 
     const handleMouseEnter = (e) => {

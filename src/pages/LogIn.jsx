@@ -39,7 +39,7 @@ const LogIn = () => {
         return;
       }
 
-      // Verify user exists in `users` table before navigating
+      // Verify user exists before navigating
       const { data: userRecord, error: userLookupError } = await supabase
         .from("profiles")
         .select("user_id")
@@ -56,11 +56,9 @@ const LogIn = () => {
         setError("No user profile found. Please complete signup before logging in.");
         return;
       }
-
+  
       setEmail("");
       setPassword("");
-
-      console.log("✅ Login successful and user verified!");
       navigate("/home", { replace: true });
     } catch (error) {
       console.error("Unexpected error:", error);

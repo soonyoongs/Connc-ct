@@ -10,55 +10,13 @@ export default function Activities() {
   const [loading, setLoading] = useState(true);
 
   const activities = [
-    {
-      id: 1,
-      title: "Basketball Game",
-      type: "Sports",
-      date: "2025-02-15",
-      time: "19:00",
-      location: "Downtown Court",
-    },
-    {
-      id: 2,
-      title: "Music Jam Session",
-      type: "Music",
-      date: "2025-02-16",
-      time: "18:30",
-      location: "Community Center",
-    },
-    {
-      id: 3,
-      title: "Art Workshop",
-      type: "Art",
-      date: "2025-02-17",
-      time: "14:00",
-      location: "Creative Studio",
-    },
-    {
-      id: 4,
-      title: "Hiking Trip",
-      type: "Travel",
-      date: "2025-02-18",
-      time: "08:00",
-      location: "Mountain Trail",
-    },
-    {
-      id: 5,
-      title: "Cooking Class",
-      type: "Cooking",
-      date: "2025-02-19",
-      time: "17:00",
-      location: "Kitchen Studios",
-    },
-    {
-      id: 6,
-      title: "Photography Walk",
-      type: "Photography",
-      date: "2025-02-20",
-      time: "10:00",
-      location: "City Downtown",
-    },
-  ];
+        { id: 1, title: "Basketball Game", type: "Sports", date: "2025-02-15", time: "19:00", location: "Downtown Court" },
+        { id: 2, title: "Music Jam Session", type: "Music", date: "2025-02-16", time: "18:30", location: "Community Center" },
+        { id: 3, title: "Art Workshop", type: "Art", date: "2025-02-17", time: "14:00", location: "Creative Studio" },
+        { id: 4, title: "Hiking Trip", type: "Travel", date: "2025-02-18", time: "08:00", location: "Mountain Trail" },
+        { id: 5, title: "Cooking Class", type: "Cooking", date: "2025-02-19", time: "17:00", location: "Kitchen Studios" },
+        { id: 6, title: "Photography Walk", type: "Photography", date: "2025-02-20", time: "10:00", location: "City Downtown" },
+    ];
 
   useEffect(() => {
     const fetchUserInterests = async () => {

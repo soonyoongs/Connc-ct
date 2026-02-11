@@ -12,48 +12,12 @@ export default function FindPeers() {
   const [loading, setLoading] = useState(true);
 
   const peers = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      age: 25,
-      gender: "Male",
-      interests: ["Sports", "Gaming", "Photography"],
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      age: 23,
-      gender: "Female",
-      interests: ["Music", "Art", "Travel"],
-    },
-    {
-      id: 3,
-      name: "Michael Park",
-      age: 26,
-      gender: "Male",
-      interests: ["Fitness", "Cooking", "Technology"],
-    },
-    {
-      id: 4,
-      name: "Emma Wilson",
-      age: 24,
-      gender: "Female",
-      interests: ["Reading", "Travel", "Gaming"],
-    },
-    {
-      id: 5,
-      name: "James Lee",
-      age: 27,
-      gender: "Male",
-      interests: ["Sports", "Photography", "Music"],
-    },
-    {
-      id: 6,
-      name: "Lisa Chen",
-      age: 22,
-      gender: "Female",
-      interests: ["Art", "Cooking", "Reading"],
-    },
+    { id: 1, name: "Alex Chen", age: 25, gender: "Male", interests: ["Sports", "Gaming", "Photography"],},
+    { id: 2, name: "Sarah Johnson", age: 23, gender: "Female", interests: ["Music", "Art", "Travel"], },
+    { id: 3, name: "Michael Park", age: 26, gender: "Male", interests: ["Fitness", "Cooking", "Technology"],},
+    { id: 4, name: "Emma Wilson", age: 24, gender: "Female", interests: ["Reading", "Travel", "Gaming"],},
+    { id: 5, name: "James Lee", age: 27, gender: "Male", interests: ["Sports", "Photography", "Music"], },
+    { id: 6, name: "Lisa Chen", age: 22, gender: "Female", interests: ["Art", "Cooking", "Reading"],},
   ];
 
   useEffect(() => {

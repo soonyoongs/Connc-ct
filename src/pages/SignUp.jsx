@@ -29,7 +29,6 @@ const SignUp = () => {
     }
 
     try {
-      // Sign up with Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -48,7 +47,6 @@ const SignUp = () => {
       }
 
       if (authData.user) {
-        // Method 1: Insert profile using the session (works if email confirmation is disabled)
         try {
           const { error: dbError } = await supabase
             .from("profiles")
@@ -64,8 +62,7 @@ const SignUp = () => {
             console.error("Database error:", dbError);
             setError("Account created but profile setup failed. Please contact support.");
           } else {
-            console.log("✅ User inserted into database successfully!");
-            setError(""); // Clear any previous errors
+            setError(""); 
             setTimeout(() => navigate("/auth/login"), 1500);
           }
         } catch (profileError) {
