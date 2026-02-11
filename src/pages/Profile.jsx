@@ -478,34 +478,6 @@ export default function Profile() {
                 </div>
               </div>
             </div>
-            
-            {/* Optional: Add an edit profile button */}
-            <div style={{ marginTop: '40px', textAlign: 'center' }}>
-              <button
-                onClick={() => navigate('/edit-profile')}
-                style={{
-                  padding: '10px 24px',
-                  backgroundColor: 'transparent',
-                  color: '#F4C430',
-                  border: '2px solid #F4C430',
-                  borderRadius: '4px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#F4C430';
-                  e.currentTarget.style.color = '#fff';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#F4C430';
-                }}
-              >
-                Edit Profile
-              </button>
-            </div>
           </div>
         </>
       )}
