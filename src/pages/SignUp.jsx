@@ -8,21 +8,23 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(false);
+    setLoading(true);
     setError("");
 
     if (password.length < 8 || password.length > 16) {
       setError("Password must be between 8 to 16 characters.");
+      setLoading(false);
       return;
     }
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);
       return;
     }
 
@@ -31,42 +33,52 @@ const SignUp = () => {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            full_name: name, // Store name in user metadata
+          },
+          emailRedirectTo: `${window.location.origin}/auth/login`,
+        },
       });
 
       if (authError) {
         setError(`${authError.message}`);
+        setLoading(false);
         return;
       }
 
-      console.log("Auth successful!");
-      console.log("2️Attempting to insert into 'users' table...");
-      console.log("Data to insert:", {
-        user_id: authData.user.id,
-        name: name,
-        email: email,
-      });
+      if (authData.user) {
+        // Method 1: Insert profile using the session (works if email confirmation is disabled)
+        try {
+          const { error: dbError } = await supabase
+            .from("profiles")
+            .insert([
+              {
+                user_id: authData.user.id,
+                name,
+                email,
+              },
+            ]);
 
-      // Insert user data into supabase
-      const { error: dbError } = await supabase
-        .from("profiles")
-        .insert([{
-            user_id: authData.user.id,
-            name,
-            email,
-          },
-        ]);
-
-      if (dbError) {
-        console.error("Database error:", dbError);
-        setError(`${dbError.message}`);
-        return;
+          if (dbError) {
+            console.error("Database error:", dbError);
+            setError("Account created but profile setup failed. Please contact support.");
+          } else {
+            console.log("✅ User inserted into database successfully!");
+            setError(""); // Clear any previous errors
+            setTimeout(() => navigate("/auth/login"), 1500);
+          }
+        } catch (profileError) {
+          console.error("Profile creation error:", profileError);
+          setError("Account created. Please log in to complete your profile.");
+          setTimeout(() => navigate("/auth/login"), 1500);
+        }
       }
-
-      console.log("✅ User inserted into database successfully!");
-      setTimeout(() => navigate("/auth/login"), 1500);
     } catch (error) {
       console.error("Unexpected error:", error);
       setError("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -76,9 +88,7 @@ const SignUp = () => {
       <div id="google_translate_element" className="google-translate"></div>
 
       <div className="auth-card">
-        <header className="auth-header">
-          Sign Up
-        </header>
+        <header className="auth-header">Sign Up</header>
 
         <form id="signupForm" onSubmit={handleSubmit}>
           {/* Full Name Field */}
@@ -138,29 +148,18 @@ const SignUp = () => {
           </div>
 
           {/* Error Message */}
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
-          )}
+          {error && <div className="error-message">{error}</div>}
 
           {/* Sign Up Button */}
-          <button
-            type="submit"
-            id="signupBtn"
-            className="auth-button"
-          >
-            Sign Up
+          <button type="submit" id="signupBtn" className="auth-button" disabled={loading}>
+            {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
 
         {/* Login Link */}
         <p className="signup-text">
           Already have an account?{' '}
-          <span
-            className="signup-link"
-            onClick={() => navigate("/auth/login")}
-          >
+          <span className="signup-link" onClick={() => navigate("/auth/login")}>
             Login here
           </span>
         </p>
