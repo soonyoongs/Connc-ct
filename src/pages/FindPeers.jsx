@@ -251,7 +251,7 @@ export default function FindPeers() {
               <div className="peer-avatar">{peer.name.charAt(0)}</div>
               <div className="peer-basic-info">
                 <h3 className="peer-name">{peer.name}</h3>
-                <p className="peer-age">{peer.age} years old</p>
+                <p className="peer-gender">{peer.gender}</p>
               </div>
             </div>
 
