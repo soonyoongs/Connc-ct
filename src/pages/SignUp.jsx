@@ -71,78 +71,100 @@ const SignUp = () => {
   };
 
   return (
-    <div className="login-page">
-      {/* Google Translate Widget - Language Selector */}
-      <div id="google_translate_element" style={{ position: 'absolute', top: 10, right: 10 }}></div>
+    <div className="auth-container">
+      {/* Google Translate Widget */}
+      <div id="google_translate_element" className="google-translate"></div>
 
-      <header>Sign Up</header>
+      <div className="auth-card">
+        <header className="auth-header">
+          Sign Up
+        </header>
 
-      <form id="signupForm" className="login-form" onSubmit={handleSubmit}>
-        <label>Full Name</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your full name"
-          required
-          className="notranslate"
-        />
-        <br />
+        <form id="signupForm" onSubmit={handleSubmit}>
+          {/* Full Name Field */}
+          <div className="form-group">
+            <label className="form-label">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your full name"
+              required
+              className="form-input notranslate"
+            />
+          </div>
 
-        <label>Email address</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email (e.g.: abc@gmail.com)"
-          required
-          className="notranslate"
-        />
-        <br />
+          {/* Email Field */}
+          <div className="form-group">
+            <label className="form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="abc@gmail.com"
+              required
+              className="form-input notranslate"
+            />
+          </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password (8-16 characters)"
-          required
-          className="notranslate"
-        />
-        <br />
+          {/* Password Field */}
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="8-16 characters"
+              required
+              className="form-input notranslate"
+            />
+          </div>
 
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm your password"
-          required
-          className="notranslate"
-        />
-        <br />
-        <br />
+          {/* Confirm Password Field */}
+          <div className="password-group">
+            <label className="form-label">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              required
+              className="form-input notranslate"
+            />
+          </div>
 
-        <p style={{ textAlign: "center" }}>
-          Already have an account?{" "}
+          {/* Error Message */}
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+
+          {/* Sign Up Button */}
+          <button
+            type="submit"
+            id="signupBtn"
+            className="auth-button"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        {/* Login Link */}
+        <p className="signup-text">
+          Already have an account?{' '}
           <span
-            style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+            className="signup-link"
             onClick={() => navigate("/auth/login")}
           >
             Login here
           </span>
         </p>
-
-        <button type="submit" id="signupBtn">
-          Sign Up
-        </button>
-      </form>
-
-      {error && <p style={{ marginTop: "10px", textAlign: "center" }}>{error}</p>}
+      </div>
     </div>
   );
 };
