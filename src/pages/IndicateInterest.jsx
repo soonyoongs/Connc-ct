@@ -1,22 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/IndicateInterest.css";
+import sportsImg from "../assets/images/sports.png";
+import musicImg from "../assets/images/music.png";
+import readingImg from "../assets/images/reading.png";
+import danceImg from "../assets/images/dance.png";
+import travelImg from "../assets/images/travel.png";
+import artImg from "../assets/images/art.png";
+import cookingImg from "../assets/images/cooking.png";
+import fitnessImg from "../assets/images/fitness.png";
+import mahjongImg from "../assets/images/mahjong.png";
+import photographyImg from "../assets/images/photography.png";
 
 export default function IndicateInterest() {
   const navigate = useNavigate();
   const [selectedInterests, setSelectedInterests] = useState([]);
 
   const interests = [
-    { id: 1, name: "Sports", image: "/img/sports.jpg" },
-    { id: 2, name: "Music", image: "/img/music.jpg" },
-    { id: 3, name: "Reading", image: "/img/reading.jpg" },
-    { id: 4, name: "Dance", image: "/img/dance.jpg" },
-    { id: 5, name: "Travel", image: "/img/travel.jpg" },
-    { id: 6, name: "Art", image: "/img/art.jpg" },
-    { id: 7, name: "Cooking", image: "/img/cooking.jpg" },
-    { id: 8, name: "Fitness", image: "/img/fitness.jpg" },
-    { id: 9, name: "Chess/Mahjong", image: "/img/chess-mahjong.jpg" },
-    { id: 10, name: "Photography", image: "/img/photography.jpg" },
+    { id: 1, name: "Sports", image: sportsImg },
+    { id: 2, name: "Music", image: musicImg },
+    { id: 3, name: "Reading", image: readingImg },
+    { id: 4, name: "Dance", image: danceImg },
+    { id: 5, name: "Travel", image: travelImg },
+    { id: 6, name: "Art", image: artImg },
+    { id: 7, name: "Cooking", image: cookingImg },
+    { id: 8, name: "Fitness", image: fitnessImg },
+    { id: 9, name: "Chess/Mahjong", image: mahjongImg },
+    { id: 10, name: "Photography", image: photographyImg },
   ];
 
   const toggleInterest = (interestId) => {

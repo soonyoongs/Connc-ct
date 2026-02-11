@@ -19,7 +19,7 @@
 
 .interest-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -37,7 +37,7 @@
   background-color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 200px;
+  min-height: 280px;
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -61,8 +61,8 @@
 }
 
 .interest-image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 8px;
 }
