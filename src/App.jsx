@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Routes>
-        <Route path="/" element={<Navigate to="/main" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/auth/LogIn" element={<LogIn />} />
         <Route path="/auth/SignUp" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
