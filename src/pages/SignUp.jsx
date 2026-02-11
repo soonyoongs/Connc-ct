@@ -48,7 +48,7 @@ const SignUp = () => {
 
       // Insert user data into supabase
       const { error: dbError } = await supabase
-        .from("users")
+        .from("profiles")
         .insert([{
             user_id: authData.user.id,
             name,
