@@ -29,15 +29,39 @@ const LogIn = () => {
       });
 
       if (supabaseError) {
-        setError(`${supabaseError.error}`);
+        setError(supabaseError.message ?? JSON.stringify(supabaseError));
         return;
       }
 
-      if (data.session) {
-        // Optional success message
-        console.log("✅ Login successful!");
-        setTimeout(() => navigate("/main", { replace: true }), 1000);
+      const user = data?.user;
+      if (!user) {
+        setError("Login succeeded but no user information returned.");
+        return;
       }
+
+      // Verify user exists in `users` table before navigating
+      const { data: userRecord, error: userLookupError } = await supabase
+        .from("profiles")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .single();
+
+      if (userLookupError) {
+        console.error("User lookup error:", userLookupError);
+        setError(userLookupError.message ?? JSON.stringify(userLookupError));
+        return;
+      }
+
+      if (!userRecord) {
+        setError("No user profile found. Please complete signup before logging in.");
+        return;
+      }
+
+      setEmail("");
+      setPassword("");
+
+      console.log("✅ Login successful and user verified!");
+      navigate("/main", { replace: true });
     } catch (error) {
       console.error("Unexpected error:", error);
       setError("Server error. Please try again later.");
