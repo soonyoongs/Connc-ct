@@ -1,5 +1,3 @@
-
-
 ## Quick Start
 
 ### Prerequisites
@@ -40,6 +38,24 @@
 
 The application should now be running on `http://localhost:5173` (or the port shown in your terminal).
 
-## Project Details
+### Getting Started with the Platform
 
-For comprehensive project details, features, and usage instructions, please refer to our [Project Documentation](https://www.canva.com/design/DAHA5vSiFns/CvP3pBpLpX760TUIPn5-Vg/view?utm_content=DAHA5vSiFns&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h40fc70f61a).
+1. **Login/Sign Up**
+   - Create a new account or log in with your existing credentials
+   - Complete your profile setup
+
+2. **Set Your Interests**
+   - Indicate your interests and preferences
+   - Customize your profile to match your activity preferences
+
+3. **Discover Activities**
+   - Browse personalized activity recommendations based on your interests
+   - View a curated lineup of activities tailored specifically for you
+
+4. **Connect with Peers**
+   - Find and connect with like-minded peers who share your interests
+   - Build your network within the community
+
+   ### Project Details
+
+For comprehensive project details, please refer to our [Project Documentation](https://www.canva.com/design/DAHA5vSiFns/CvP3pBpLpX760TUIPn5-Vg/view?utm_content=DAHA5vSiFns&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h40fc70f61a).
