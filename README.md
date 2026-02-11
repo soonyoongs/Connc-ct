@@ -1,3 +1,5 @@
+
+
 ## Quick Start
 
 ### Prerequisites
@@ -37,3 +39,7 @@
 ```
 
 The application should now be running on `http://localhost:5173` (or the port shown in your terminal).
+
+## Project Details
+
+For comprehensive project details, features, and usage instructions, please refer to our [Project Documentation](https://www.canva.com/design/DAHA5vSiFns/CvP3pBpLpX760TUIPn5-Vg/view?utm_content=DAHA5vSiFns&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h40fc70f61a).
