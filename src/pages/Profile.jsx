@@ -105,7 +105,7 @@ export default function Profile() {
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
         <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Connc:ct</div>
-        <button onClick={() => navigate(-1)} style={{
+        <button onClick={() => navigate(-2)} style={{
           padding: '6px 16px',
           backgroundColor: '#fff',
           border: '1px solid #ddd',
@@ -115,7 +115,7 @@ export default function Profile() {
           fontWeight: '500',
           color: '#333'
         }}>
-          ← Back
+          🛖 Home
         </button>
       </nav>
 
